@@ -52,7 +52,7 @@
       "type": "object",
       "title": "coc-pysen configuration",
       "properties": {
-        "coc-pysen.enable": {
+        "pysen.enable": {
           "type": "boolean",
           "default": true,
           "description": "Enable coc-pysen extension."

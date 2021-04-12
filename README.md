@@ -10,7 +10,7 @@ Python linting, formatting made easy.
 
 ## [WIP]
 
-**Known issues? (pysen-ls itself?, or pysen-vscode?**:
+**Known issues I have felt (pysen-ls itself?, or pysen-vscode?**:
 
 - [ ] `pysen_ls.log` is always created when starting the language server. I don't know how to suppress it...
 - [ ] There seems to be no implementation of `pysen.reloadServerConfiguration`.
@@ -19,6 +19,7 @@ Python linting, formatting made easy.
   - `pysen.triggerLintWorkspace`
   - `pysen.triggerFormatDocument`
   - `pysen.triggerFormatWorkspace`
+- [ ] Currently, it is slow overall (especially formatting). Formatting commands may time out. (It is also due to the fact that "black" itself is slow...)
 
 **Current confirmed correct behavior.**:
 

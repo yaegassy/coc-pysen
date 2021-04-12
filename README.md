@@ -86,7 +86,7 @@ You can also run the installation command manually.
 
 ## Commands
 
-- `pysen.install`: Install pysen-ls (builtin)
+- `pysen.installServer`: Install pysen-ls (builtin)
   - It will be installed in this path:
     - Mac/Linux: `~/.config/coc/extensions/coc-pysen-data/pysen-ls/venv/bin/pysen_language_server`
     - Windows: `~/AppData/Local/coc/extensions/coc-pysen-data/pysen-ls/venv/bin/pysen_language_server`

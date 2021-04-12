@@ -1,0 +1,181 @@
+{
+  "name": "coc-pysen",
+  "version": "0.0.1",
+  "pysenLsVersion": "0.1.0",
+  "description": "pysen-ls (pysen language server) extension for coc.nvim",
+  "author": "yaegassy <yaegassy@users.noreply.github.com>",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "keywords": [
+    "coc.nvim",
+    "python",
+    "linter",
+    "formatter",
+    "vim",
+    "neovim"
+  ],
+  "engines": {
+    "coc": "^0.0.80"
+  },
+  "scripts": {
+    "lint": "eslint src --ext ts",
+    "clean": "rimraf lib",
+    "watch": "node esbuild.js --watch",
+    "build": "node esbuild.js",
+    "prepare": "node esbuild.js"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 120,
+    "semi": true
+  },
+  "devDependencies": {
+    "@types/node": "^12.11.7",
+    "@types/tmp": "^0.2.0",
+    "@types/rimraf": "^3.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.8.2",
+    "@typescript-eslint/parser": "^4.8.2",
+    "coc.nvim": "^0.0.80",
+    "esbuild": "^0.8.42",
+    "eslint": "^7.14.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.2.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.1.2"
+  },
+  "activationEvents": [
+    "onLanguage:python"
+  ],
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "coc-pysen configuration",
+      "properties": {
+        "coc-pysen.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable coc-pysen extension."
+        },
+        "pysen.pysenLsPath": {
+          "type": "string",
+          "default": "",
+          "description": "(Optional) The custom path to the pysen-ls (Absolute path)."
+        },
+        "pysen.bultin.flake8Version": {
+          "type": "string",
+          "default": "",
+          "description": "Version of flake8 for built-in install."
+        },
+        "pysen.bultin.mypyVersion": {
+          "type": "string",
+          "default": "",
+          "description": "Version of mypy for built-in install."
+        },
+        "pysen.bultin.blackVersion": {
+          "type": "string",
+          "default": "",
+          "description": "Version of black for built-in install."
+        },
+        "pysen.bultin.isortVersion": {
+          "type": "string",
+          "default": "",
+          "description": "Version of isort for built-in install."
+        },
+        "pysen.client.connectionMode": {
+          "scope": "resource",
+          "type": "string",
+          "default": "stdio",
+          "markdownDescription": "Controls the communication method to pysen-ls.",
+          "enum": [
+            "stdio",
+            "tcp"
+          ],
+          "enumDescriptions": [
+            "Use stdio to communicate with pysen-ls.",
+            "Use tcp to connect pysen-ls. You need to launch pysen-ls."
+          ]
+        },
+        "pysen.client.pythonPath": {
+          "scope": "resource",
+          "type": "string",
+          "default": null,
+          "description": "Specifies the python path to use pysen."
+        },
+        "pysen.client.tcpHost": {
+          "scope": "resource",
+          "type": "string",
+          "default": "127.0.0.1",
+          "description": "Specifies the host name to connect pysen-ls server. This setting only works with connectionMode is 'tcp'."
+        },
+        "pysen.client.tcpPort": {
+          "scope": "resource",
+          "type": "number",
+          "default": "3746",
+          "markdownDescription": "Specifies the port to connect pysen-ls server. This setting only works with connectionMode is 'tcp'."
+        },
+        "pysen.server.enableLintOnSave": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Triggers the lint task on save."
+        },
+        "pysen.server.enableCodeAction": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable code actions."
+        },
+        "pysen.server.lintTargets": {
+          "scope": "resource",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "lint"
+          ],
+          "description": "Controls target names for pysen to invoke in the lint task."
+        },
+        "pysen.server.formatTargets": {
+          "scope": "resource",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "format",
+            "lint"
+          ],
+          "description": "Controls target names for pysen to invoke in the format task."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "pysen.installServer",
+        "title": "Install pysen language server (builtin)"
+      },
+      {
+        "command": "pysen.reloadServerConfiguration",
+        "title": "Reload Server Configuration"
+      },
+      {
+        "command": "pysen.triggerLintDocument",
+        "title": "Lint Current Document"
+      },
+      {
+        "command": "pysen.triggerLintWorkspace",
+        "title": "Lint Entire Workspace"
+      },
+      {
+        "command": "pysen.triggerFormatDocument",
+        "title": "Format Current Document"
+      },
+      {
+        "command": "pysen.triggerFormatWorkspace",
+        "title": "Format Entire Workspace"
+      }
+    ]
+  }
+}

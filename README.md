@@ -12,7 +12,7 @@ Python linting, formatting made easy.
 
 **Known issues? (pysen-ls itself?, or pysen-vscode?**:
 
-- [ ] `pysen_ls.log` pytho_log is always created when starting the language server. I don't know how to suppress it...
+- [ ] `pysen_ls.log` is always created when starting the language server. I don't know how to suppress it...
 - [ ] There seems to be no implementation of `pysen.reloadServerConfiguration`.
 - [ ] I don't know the correct behavior of each command provided.
   - `pysen.triggerLintDocument`

@@ -115,8 +115,11 @@ You can also run the installation command manually.
 
 ## What's "pysen"
 
-- Blog post (japanese)
-  - <https://tech.preferred.jp/ja/blog/pysen-is-the-new-sempai/>
+- Blog post
+  - (English)
+    - <https://tech.preferred.jp/en/blog/pysen-is-the-new-sempai/>
+  - (Japanese)
+    - <https://tech.preferred.jp/ja/blog/pysen-is-the-new-sempai/>
 
 ## Thanks
 

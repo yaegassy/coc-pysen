@@ -15,6 +15,7 @@ Python linting, formatting made easy.
 - [ ] `pysen_ls.log` is always created when starting the language server. I don't know how to suppress it...
 - [ ] There seems to be no implementation of `pysen.reloadServerConfiguration`.
 - [ ] Currently, it is slow overall (especially formatting). Formatting commands may time out. (It is also due to the fact that "black" itself is slow...)
+  - You may want to refrain from setting up automatic formatting when saving files.
 
 ## Install
 

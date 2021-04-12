@@ -16,11 +16,6 @@ Python linting, formatting made easy.
 - [ ] There seems to be no implementation of `pysen.reloadServerConfiguration`.
 - [ ] Currently, it is slow overall (especially formatting). Formatting commands may time out. (It is also due to the fact that "black" itself is slow...)
 
-**Current confirmed correct behavior.**:
-
-- "Lint" will be executed/updated with `:w`.
-- "Format" could be executed with `:call CocAction('format')`.
-
 ## Install
 
 **CocInstall**:
@@ -32,6 +27,30 @@ Python linting, formatting made easy.
 ```vim
 Plug 'yaegassy/coc-pysen', {'do': 'yarn install --frozen-lockfile'}
 ```
+
+## Require: pyproject.toml
+
+To run linter and formatter in "pysen", you need `pyproject.toml`.
+
+**e.g. pyproject.toml**:
+
+```toml
+[tool.pysen]
+version = "0.9"
+
+[tool.pysen.lint]
+enable_black = true
+enable_flake8 = true
+enable_isort = true
+enable_mypy = true
+mypy_preset = "strict"
+line_length = 88
+py_version = "py37"
+[[tool.pysen.lint.mypy_targets]]
+  paths = ["."]
+```
+
+Check the [README](https://github.com/pfnet/pysen/blob/main/README.md) of "pysen".
 
 ## Detect: pysen-ls
 

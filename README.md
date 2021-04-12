@@ -35,6 +35,34 @@ Python linting, formatting made easy.
 Plug 'yaegassy/coc-pysen', {'do': 'yarn install --frozen-lockfile'}
 ```
 
+## Detect: pysen-ls
+
+`coc-pysen` detects and starts `pysen-ls`.
+
+**Priority to detect**:
+
+1. pysen.pysenLsPath
+2. current python3 environment (e.g. pysen-ls in venv)
+3. builtin pysen-ls (Installation commands are also provided)
+
+## Bult-in install
+
+coc-pysen allows you to create an extension-only "venv" and install "pysen-ls".
+
+Also install flake8, mypy, black, and isort together.
+
+You can also specify the version of each tool. (setting: `pysen.bultin.flake8Version`, `pysen.bultin.mypyVersion`, `pysen.bultin.blackVersion`, `pysen.bultin.isortVersion`)
+
+----
+
+The first time you use coc-pysen, if pysen-ls is not detected, you will be prompted to do a built-in installation.
+
+You can also run the installation command manually.
+
+```
+:CocComannd pysen.installServer
+```
+
 ## Configuration options
 
 - `pysen.enable`: Enable coc-pysen extension, default: `true`

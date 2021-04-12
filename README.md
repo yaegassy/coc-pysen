@@ -6,6 +6,8 @@
 
 Python linting, formatting made easy.
 
+<img width="780" alt="coc-pysen-demo" src="https://user-images.githubusercontent.com/188642/114372002-0d0c5100-9bbc-11eb-9196-20a986887dee.gif">
+
 ## [WIP]
 
 **Known issues? (pysen-ls itself?, or pysen-vscode?**:

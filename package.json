@@ -1,6 +1,6 @@
 {
   "name": "@yaegassy/coc-pysen",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "pysenLsVersion": "0.1.1",
   "description": "pysen-ls (pysen language server) extension for coc.nvim",
   "author": "yaegassy <yosstools@gmail.com>",

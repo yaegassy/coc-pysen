@@ -1,4 +1,4 @@
-# [WIP] coc-pysen
+# coc-pysen
 
 > fork from a [bonprosoft/pysen-vscode](https://github.com/bonprosoft/pysen-vscode)
 

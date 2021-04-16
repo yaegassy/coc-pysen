@@ -18,7 +18,11 @@ You may want to refrain from setting up automatic formatting when saving files.
 
 **CocInstall**:
 
-> TODO
+```vim
+:CocInstall @yaegassy/coc-pysen
+```
+
+> scoped packages
 
 **vim-plug**:
 

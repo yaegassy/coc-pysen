@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "pysenLsVersion": "0.1.1",
   "description": "pysen-ls (pysen language server) extension for coc.nvim",
-  "author": "yaegassy <yaegassy@users.noreply.github.com>",
+  "author": "yaegassy <yosstools@gmail.com>",
   "license": "MIT",
   "main": "lib/index.js",
   "keywords": [
@@ -162,10 +162,6 @@
       {
         "command": "pysen.installServer",
         "title": "Install pysen language server (builtin)"
-      },
-      {
-        "command": "pysen.reloadServerConfiguration",
-        "title": "Reload Server Configuration"
       },
       {
         "command": "pysen.triggerLintDocument",

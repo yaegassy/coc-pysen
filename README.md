@@ -12,7 +12,6 @@ Python linting, formatting made easy.
 
 **Known issues I have felt (pysen-ls itself?, or pysen-vscode?)**:
 
-- [ ] There seems to be no implementation of `pysen.reloadServerConfiguration`.
 - [ ] Currently, it is slow overall (especially formatting). Formatting commands may time out. (It is also due to the fact that "black" itself is slow...)
   - You may want to refrain from setting up automatic formatting when saving files.
 

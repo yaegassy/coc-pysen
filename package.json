@@ -1,5 +1,5 @@
 {
-  "name": "coc-pysen",
+  "name": "@yaegassy/coc-pysen",
   "version": "0.0.1",
   "pysenLsVersion": "0.1.1",
   "description": "pysen-ls (pysen language server) extension for coc.nvim",
@@ -16,6 +16,13 @@
   ],
   "engines": {
     "coc": "^0.0.80"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yaegassy/coc-pysen"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "lint": "eslint src --ext ts",

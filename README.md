@@ -8,12 +8,11 @@ Python linting, formatting made easy.
 
 <img width="780" alt="coc-pysen-demo" src="https://user-images.githubusercontent.com/188642/114372002-0d0c5100-9bbc-11eb-9196-20a986887dee.gif">
 
-## [WIP]
+## Note
 
-**Known issues I have felt (pysen-ls itself?, or pysen-vscode?)**:
+Due to the nature of the tool, it may take some time for the formatter to complete its execution.
 
-- [ ] Currently, it is slow overall (especially formatting). Formatting commands may time out. (It is also due to the fact that "black" itself is slow...)
-  - You may want to refrain from setting up automatic formatting when saving files.
+You may want to refrain from setting up automatic formatting when saving files.
 
 ## Install
 
@@ -109,7 +108,6 @@ You can also run the installation command manually.
 - `pysen.triggerFormatDocument`: Format Current Document
 - `pysen.triggerFormatWorkspace`: Format Entire Workspace
 - `pysen.triggerFormatWorkspace`: Format Entire Workspace
-- `pysen.reloadServerConfiguration`: Reload Server Configuration
 
 ## What's "pysen"
 
@@ -118,6 +116,10 @@ You can also run the installation command manually.
     - <https://tech.preferred.jp/en/blog/pysen-is-the-new-sempai/>
   - (Japanese)
     - <https://tech.preferred.jp/ja/blog/pysen-is-the-new-sempai/>
+
+## Simlar vim plugins
+
+- [bonprosoft/pysen.vim](https://github.com/bonprosoft/pysen.vim)
 
 ## Thanks
 

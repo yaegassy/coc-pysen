@@ -105,8 +105,8 @@ You can also run the installation command manually.
 
 - `pysen.installServer`: Install pysen-ls (builtin)
   - It will be installed in this path:
-    - Mac/Linux: `~/.config/coc/extensions/coc-pysen-data/pysen-ls/venv/bin/pysen_language_server`
-    - Windows: `~/AppData/Local/coc/extensions/coc-pysen-data/pysen-ls/venv/bin/pysen_language_server`
+    - Mac/Linux: `~/.config/coc/extensions/@yaegassy/coc-pysen-data/pysen-ls/venv/bin/pysen_language_server`
+    - Windows: `~/AppData/Local/coc/extensions/@yaegassy/coc-pysen-data/pysen-ls/venv/bin/pysen_language_server`
 - `pysen.triggerLintDocument`: Lint Current Document
 - `pysen.triggerLintWorkspace`: Lint Entire Workspace
 - `pysen.triggerFormatDocument`: Format Current Document

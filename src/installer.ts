@@ -35,7 +35,7 @@ export async function pysenLsInstall(
   const installIsortStr = _installToolVersionStr('isort', isortVersion);
 
   const installCmd =
-    `python3 -m venv ${pathVenv} && ` +
+    `${pythonCommand} -m venv ${pathVenv} && ` +
     `${pathVenvPython} -m pip install -U pip pysen-ls==${PYSEN_LS_VERSION} ${installFlake8Str} ${installMypyStr} ${installBlackStr} ${installIsortStr}`;
 
   rimraf.sync(pathVenv);

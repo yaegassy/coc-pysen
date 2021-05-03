@@ -11,6 +11,7 @@ import { PYSEN_LS_VERSION } from './constant';
 const exec = util.promisify(child_process.exec);
 
 export async function pysenLsInstall(
+  pythonCommand: string,
   context: ExtensionContext,
   flake8Version?: string,
   mypyVersion?: string,
@@ -18,10 +19,14 @@ export async function pysenLsInstall(
   isortVersion?: string
 ): Promise<void> {
   const pathVenv = path.join(context.storagePath, 'pysen-ls', 'venv');
-  const pathPip = path.join(pathVenv, 'bin', 'pip');
+
+  let pathVenvPython = path.join(context.storagePath, 'pysen-ls', 'venv', 'bin', 'python');
+  if (process.platform === 'win32') {
+    pathVenvPython = path.join(context.storagePath, 'pysen-ls', 'venv', 'Scripts', 'python');
+  }
 
   const statusItem = window.createStatusBarItem(0, { progress: true });
-  statusItem.text = `Install pysen-ls and more tools ...`;
+  statusItem.text = `Install pysen-ls and more tools...`;
   statusItem.show();
 
   const installFlake8Str = _installToolVersionStr('flake8', flake8Version);
@@ -31,15 +36,14 @@ export async function pysenLsInstall(
 
   const installCmd =
     `python3 -m venv ${pathVenv} && ` +
-    `${pathPip} install -U pip pysen-ls==${PYSEN_LS_VERSION} ${installFlake8Str} ${installMypyStr} ${installBlackStr} ${installIsortStr}`;
+    `${pathVenvPython} -m pip install -U pip pysen-ls==${PYSEN_LS_VERSION} ${installFlake8Str} ${installMypyStr} ${installBlackStr} ${installIsortStr}`;
 
   rimraf.sync(pathVenv);
   try {
-    //window.showMessage(`Install pysen-ls and more tools ...`);
-    window.showWarningMessage(`Install pysen-ls and more tools ...`);
+    window.showMessage(`Install pysen-ls and more tools...`);
     await exec(installCmd);
     statusItem.hide();
-    window.showWarningMessage(`pysen-ls: installed!`);
+    window.showMessage(`pysen-ls: installed!`);
   } catch (error) {
     statusItem.hide();
     window.showErrorMessage(`pysen-ls: install failed. | ${error}`);

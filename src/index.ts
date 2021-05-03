@@ -17,6 +17,8 @@ import path from 'path';
 import child_process from 'child_process';
 import util from 'util';
 
+import which from 'which';
+
 import registerCommands from './commands';
 import { pysenLsInstall } from './installer';
 
@@ -45,21 +47,30 @@ function useLanguageServerOverStdio(pythonPath: string): ServerOptions {
   };
 }
 
-// TODO: Enhancing python3 path-detect
+// MEMO: custom
 function getPythonPath(config: WorkspaceConfiguration): string {
-  // eslint-disable-next-line prefer-const
-  let pythonPath = config.get<string>('pythonPath');
+  let pythonPath = config.get<string>('pythonPath', '');
   if (pythonPath) {
     return pythonPath;
   }
 
-  // MEMO: coment out (vscode-python only)
-  // pythonPath = workspace.getConfiguration('python').get<string>('pythonPath');
-  // if (pythonPath) {
-  //   return pythonPath;
-  // }
+  try {
+    which.sync('python3');
+    pythonPath = 'python3';
+    return pythonPath;
+  } catch (e) {
+    // noop
+  }
 
-  return 'python3';
+  try {
+    which.sync('python');
+    pythonPath = 'python';
+    return pythonPath;
+  } catch (e) {
+    // noop
+  }
+
+  return pythonPath;
 }
 
 export async function activate(context: ExtensionContext): Promise<void> {
@@ -94,18 +105,36 @@ export async function activate(context: ExtensionContext): Promise<void> {
   let pysenLsPath = extensionConfig.get('pysenLsPath', '');
   if (!pysenLsPath) {
     // MEMO: require, await
-    if (await _existsEnvPysenLs(getPythonPath(clientConfig))) {
+    if (await existsEnvPysenLs(getPythonPath(clientConfig))) {
       pysenLsPath = 'dummy';
       isModule = true;
-    } else if (fs.existsSync(path.join(context.storagePath, 'pysen-ls', 'venv', 'bin', 'pysen_language_server'))) {
-      pysenLsPath = path.join(context.storagePath, 'pysen-ls', 'venv', 'bin', 'pysen_language_server');
+    } else if (
+      fs.existsSync(path.join(context.storagePath, 'pysen-ls', 'venv', 'Scripts', 'pysen_language_server.exe')) ||
+      fs.existsSync(path.join(context.storagePath, 'pysen-ls', 'venv', 'bin', 'pysen_language_server'))
+    ) {
+      if (process.platform === 'win32') {
+        pysenLsPath = path.join(context.storagePath, 'pysen-ls', 'venv', 'Scripts', 'pysen_language_server.exe');
+      } else {
+        pysenLsPath = path.join(context.storagePath, 'pysen-ls', 'venv', 'bin', 'pysen_language_server');
+      }
     }
   }
 
   // Install "pysen-ls" if it does not exist.
   if (!pysenLsPath) {
-    await installWrapper(context, builtinFlake8Version, builtinMypyVersion, builtinBlackVersion, builtinIsortVersion);
-    pysenLsPath = path.join(context.storagePath, 'pysen-ls', 'venv', 'bin', 'pysen_language_server');
+    await installWrapper(
+      getPythonPath(clientConfig),
+      context,
+      builtinFlake8Version,
+      builtinMypyVersion,
+      builtinBlackVersion,
+      builtinIsortVersion
+    );
+    if (process.platform === 'win32') {
+      pysenLsPath = path.join(context.storagePath, 'pysen-ls', 'venv', 'Scripts', 'pysen_language_server.exe');
+    } else {
+      pysenLsPath = path.join(context.storagePath, 'pysen-ls', 'venv', 'bin', 'pysen_language_server');
+    }
   }
 
   // If "pysen-ls" does not exist completely, terminate the process.
@@ -119,7 +148,14 @@ export async function activate(context: ExtensionContext): Promise<void> {
   // MEMO: Add installServer command
   context.subscriptions.push(
     commands.registerCommand('pysen.installServer', async () => {
-      await installWrapper(context, builtinFlake8Version, builtinMypyVersion, builtinBlackVersion, builtinIsortVersion);
+      await installWrapper(
+        getPythonPath(clientConfig),
+        context,
+        builtinFlake8Version,
+        builtinMypyVersion,
+        builtinBlackVersion,
+        builtinIsortVersion
+      );
     })
   );
   // original command
@@ -176,6 +212,7 @@ export function deactivate(): Thenable<void> | undefined {
 }
 
 async function installWrapper(
+  pythonCommand: string,
   context: ExtensionContext,
   flake8Version?: string,
   mypyVersion?: string,
@@ -189,7 +226,7 @@ async function installWrapper(
   ret = await window.showQuickpick(['Yes', 'Cancel'], msg);
   if (ret === 0) {
     try {
-      await pysenLsInstall(context, flake8Version, mypyVersion, blackVersion, isortVersion);
+      await pysenLsInstall(pythonCommand, context, flake8Version, mypyVersion, blackVersion, isortVersion);
     } catch (e) {
       return;
     }
@@ -198,7 +235,7 @@ async function installWrapper(
   }
 }
 
-async function _existsEnvPysenLs(pythonPath: string): Promise<boolean> {
+async function existsEnvPysenLs(pythonPath: string): Promise<boolean> {
   const checkCmd = `${pythonPath} -m pysen_ls -h`;
   try {
     await exec(checkCmd);

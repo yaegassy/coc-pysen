@@ -148,6 +148,9 @@ export async function activate(context: ExtensionContext): Promise<void> {
   // MEMO: Add installServer command
   context.subscriptions.push(
     commands.registerCommand('pysen.installServer', async () => {
+      if (client.serviceState !== 5) {
+        await client.stop();
+      }
       await installWrapper(
         getPythonPath(clientConfig),
         context,
@@ -156,6 +159,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
         builtinBlackVersion,
         builtinIsortVersion
       );
+      client.start();
     })
   );
   // original command

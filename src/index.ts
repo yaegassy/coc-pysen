@@ -48,23 +48,27 @@ function useLanguageServerOverStdio(pythonPath: string): ServerOptions {
 }
 
 // MEMO: custom
-function getPythonPath(config: WorkspaceConfiguration): string {
+function getPythonPath(config: WorkspaceConfiguration, isRealpath?: boolean): string {
   let pythonPath = config.get<string>('pythonPath', '');
   if (pythonPath) {
     return pythonPath;
   }
 
   try {
-    which.sync('python3');
-    pythonPath = 'python3';
+    pythonPath = which.sync('python3');
+    if (isRealpath) {
+      pythonPath = fs.realpathSync(pythonPath);
+    }
     return pythonPath;
   } catch (e) {
     // noop
   }
 
   try {
-    which.sync('python');
-    pythonPath = 'python';
+    pythonPath = which.sync('python');
+    if (isRealpath) {
+      pythonPath = fs.realpathSync(pythonPath);
+    }
     return pythonPath;
   } catch (e) {
     // noop
@@ -122,14 +126,17 @@ export async function activate(context: ExtensionContext): Promise<void> {
 
   // Install "pysen-ls" if it does not exist.
   if (!pysenLsPath) {
+    const isRealpath = true;
+
     await installWrapper(
-      getPythonPath(clientConfig),
+      getPythonPath(clientConfig, isRealpath),
       context,
       builtinFlake8Version,
       builtinMypyVersion,
       builtinBlackVersion,
       builtinIsortVersion
     );
+
     if (process.platform === 'win32') {
       pysenLsPath = path.join(context.storagePath, 'pysen-ls', 'venv', 'Scripts', 'pysen_language_server.exe');
     } else {
@@ -148,11 +155,13 @@ export async function activate(context: ExtensionContext): Promise<void> {
   // MEMO: Add installServer command
   context.subscriptions.push(
     commands.registerCommand('pysen.installServer', async () => {
+      const isRealpath = true;
+
       if (client.serviceState !== 5) {
         await client.stop();
       }
       await installWrapper(
-        getPythonPath(clientConfig),
+        getPythonPath(clientConfig, isRealpath),
         context,
         builtinFlake8Version,
         builtinMypyVersion,

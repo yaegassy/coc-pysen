@@ -86,7 +86,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
 
   const extensionStoragePath = context.storagePath;
   if (!fs.existsSync(extensionStoragePath)) {
-    fs.mkdirSync(extensionStoragePath);
+    fs.mkdirSync(extensionStoragePath, { recursive: true });
   }
 
   const builtinFlake8Version = extensionConfig.get('bultin.flake8Version', '');

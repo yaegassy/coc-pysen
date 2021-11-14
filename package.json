@@ -83,7 +83,7 @@
         },
         "pysen.bultin.blackVersion": {
           "type": "string",
-          "default": "",
+          "default": "20.8b1",
           "description": "Version of black for built-in install."
         },
         "pysen.bultin.isortVersion": {

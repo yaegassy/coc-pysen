@@ -157,6 +157,16 @@
             "lint"
           ],
           "description": "Controls target names for pysen to invoke in the format task."
+        },
+        "pysen.trace.server": {
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "description": "Traces the communication between coc.nvim and the pysen language server."
         }
       }
     },

@@ -212,7 +212,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
     initializationOptions: { config: serverConfig },
   };
 
-  client = new LanguageClient('pysen language server', serverOptions, clientOptions);
+  client = new LanguageClient('pysen', 'pysen language server', serverOptions, clientOptions);
 
   client.start();
 }

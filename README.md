@@ -101,6 +101,7 @@ You can also run the installation command manually.
 - `pysen.server.enableCodeAction`: Enable/disable code actions, default: `true`
 - `pysen.server.lintTargets`: Controls target names for pysen to invoke in the lint task, default: `["lint"]`
 - `pysen.server.formatTargets`: Controls target names for pysen to invoke in the format task, default: `["format", "lint"]`
+- `pysen.trace.server`: Traces the communication between coc.nvim and the pysen language server, default: `"off"`
 
 ## Commands
 

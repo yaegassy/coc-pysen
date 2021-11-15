@@ -133,8 +133,9 @@ You can also run the installation command manually.
 
 ## Thanks
 
-- [bonprosoft/pysen-vscode](https://github.com/bonprosoft/pysen-vscode)
+- [pfnet/pysen](https://github.com/pfnet/pysen)
 - [bonprosoft/pysen-ls](https://github.com/bonprosoft/pysen-ls)
+- [bonprosoft/pysen-vscode](https://github.com/bonprosoft/pysen-vscode)
 
 ## License
 

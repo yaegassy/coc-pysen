@@ -38,7 +38,7 @@ To run linter and formatter in "pysen", you need `pyproject.toml`.
 
 ```toml
 [tool.pysen]
-version = "0.9"
+version = "0.10"
 
 [tool.pysen.lint]
 enable_black = true
@@ -52,7 +52,12 @@ py_version = "py37"
   paths = ["."]
 ```
 
-Check the [README](https://github.com/pfnet/pysen/blob/main/README.md) of "pysen".
+**More Info**:
+
+Check the README of "pysen".
+
+- [Quickstart: Set up linters using pysen](https://github.com/pfnet/pysen#quickstart-set-up-linters-using-pysen)
+- [Frequently Asked Questions](https://github.com/pfnet/pysen#frequently-asked-questions)
 
 ## Detect: pysen-ls
 
@@ -60,7 +65,7 @@ Check the [README](https://github.com/pfnet/pysen/blob/main/README.md) of "pysen
 
 **Priority to detect**:
 
-1. pysen.pysenLsPath
+1. `pysen.pysenLsPath`
 2. current python3 environment (e.g. pysen-ls in venv)
 3. builtin pysen-ls (Installation commands are also provided)
 

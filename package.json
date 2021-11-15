@@ -1,7 +1,7 @@
 {
   "name": "@yaegassy/coc-pysen",
   "version": "0.1.5",
-  "pysenLsVersion": "0.1.1",
+  "pysenLsVersion": "0.1.2",
   "description": "pysen-ls (pysen language server) extension for coc.nvim",
   "author": "yaegassy <yosstools@gmail.com>",
   "license": "MIT",
@@ -83,7 +83,7 @@
         },
         "pysen.bultin.blackVersion": {
           "type": "string",
-          "default": "20.8b1",
+          "default": "",
           "description": "Version of black for built-in install."
         },
         "pysen.bultin.isortVersion": {

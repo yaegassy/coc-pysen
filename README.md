@@ -93,8 +93,7 @@ You can also run the installation command manually.
 - `pysen.pysenLsPath`: (Optional) The custom path to the pysen-ls (Absolute path)
 - `pysen.bultin.flake8Version`: (Optional) Version of flake8 for built-in install, e.g. "3.9.0", default: `""`
 - `pysen.bultin.mypyVersion`: (Optional) Version of mypy for built-in install, e.g. "0.812", default: `""`
-- `pysen.bultin.blackVersion`: (Optional) Version of black for built-in install, e.g. "20.8b1", default: `"20.8b1"`
-  - The latest version of "black" will not work with v0.1.1 of `pysen-ls`. "v20.8b1" has been confirmed to work, so that is the default setting for now.
+- `pysen.bultin.blackVersion`: (Optional) Version of black for built-in install, e.g. "20.8b1", default: `""`
 - `pysen.bultin.isortVersion`: (Optional) Version of isort for built-in install, e.g. "5.8.0", default: `""`
 - `pysen.client.connectionMode`: Controls the communication method to pysen-ls, valid options `["stdio", "tcp"]`, default: `"stdio"`
   - `stdio`: Use stdio to communicate with pysen-ls.

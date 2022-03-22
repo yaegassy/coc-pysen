@@ -84,7 +84,7 @@ The first time you use coc-pysen, if pysen-ls is not detected, you will be promp
 You can also run the installation command manually.
 
 ```
-:CocComannd pysen.installServer
+:CocCommand pysen.installServer
 ```
 
 ## Configuration options

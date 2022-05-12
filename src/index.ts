@@ -233,11 +233,8 @@ async function installWrapper(
   isortVersion?: string
 ) {
   const msg = 'Install "pysen-ls"?';
-  context.workspaceState;
-
-  let ret = 0;
-  ret = await window.showQuickpick(['Yes', 'Cancel'], msg);
-  if (ret === 0) {
+  const ret = await window.showPrompt(msg);
+  if (ret) {
     try {
       await pysenLsInstall(pythonCommand, context, flake8Version, mypyVersion, blackVersion, isortVersion);
     } catch (e) {
